@@ -1,0 +1,7 @@
+This vulnerability has to do with a web server that does not encode JavaScript in the GET URL <br />
+
+Hackers can share this URL to clients and essentially run any JavaScript code on the victim's browser
+
+Notes:
+
+ - Chrome and many more modern browsers implement security against this.
