@@ -1,0 +1,9 @@
+# Simple implementation of a persistent xss <br />
+
+## Summary:
+ * I was able to crash the site by storing an unclosed script tag
+  * This would make all lower html become hidden
+ * Because this was not injected by the site, but seemingly render server side chrome could not stop this
+  * Script injection was very strong
+
+## MongoDB and Express
