@@ -11,18 +11,13 @@ let commentSchema = mongoose.Schema({
 
 let Comment = mongoose.model('Comment', commentSchema);
 
-mongoose.connect('mongodb://localhost/persistent').then(() => {
-  console.log("Connected to mongodb server");
-}).catch((err) => {
-  console.log("Could not connect to mongodb server");
-});
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 app.set('views', __dirname);
 
 app.get('*', (req, res) => {
+  console.log("Received request from", req.url);
   Comment.find((err, comments) => {
     res.locals.comments = comments;
     return res.render('index');
@@ -41,6 +36,11 @@ app.post('/comment', (req, res) => {
   });
 });
 
-app.listen(5000, (err) => {
-  console.log("Server listening in on port 5000");
+mongoose.connect('mongodb://localhost/persistent').then(() => {
+  console.log("Connected to mongodb server");
+  app.listen(5000, (err) => {
+    console.log("Server listening in on port 5000");
+  });
+}).catch((err) => {
+  throw err;
 });
